@@ -150,7 +150,7 @@ class Sequencer extends Component {
       <React.StrictMode>
         <div className="container">
           <header>
-            <h1>React Sequencer</h1>
+            <h1>Step Rouge</h1>
           </header>
 
           <div className="Sequencer">
