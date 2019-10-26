@@ -13,7 +13,6 @@ export default class Synth {
       const delay = this.ctx.createDelay()
       delay.delayTime.value = state.delay ? state.bpm / 2000 : 0
   
-      // VCA
       const vca = this.ctx.createGain()
       vca.gain.value = 1
   

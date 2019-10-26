@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import cx from 'classnames'
 import Synth from './Synth'
+import WebMidi from './midi.js';
 
 import NOTES from './notes'
 
@@ -171,7 +172,7 @@ class Sequencer extends Component {
                 <input
                   type="number"
                   min="80"
-                  max="300"
+                  max="200"
                   step="1"
                   defaultValue={this.state.bpm}
                   onChange={e => this.changeBPM(e.target.value)}
