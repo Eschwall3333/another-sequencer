@@ -5,6 +5,30 @@ import WebMidi from './midi.js';
 
 import NOTES from './notes'
 
+if (navigator.requestMIDIAccess) {
+  console.log('This browser supports WebMIDI!');
+} else {
+  console.log('WebMIDI is not supported in this browser.');
+}  
+navigator.requestMIDIAccess()
+  .then(onMIDISuccess, console.log);
+
+function onMIDISuccess(midiAccess) {
+  for (var input of midiAccess.inputs.values())
+    input.onmidimessage = getMIDIMessage;
+}
+  
+
+function getMIDIMessage(midiMessage) {
+  console.log(midiMessage);
+  const number = midiMessage.data[1]
+  console.log(number);
+  const x = number % 8
+  const y = Math.floor(number / 8) / 2
+  const gridPosition = { x, y }
+  console.log(x, y);
+} 
+
 const getNotesForOctave = octave =>
   Object.keys(NOTES).reduce((state, note) => {
     if (note.split('').pop() === String(octave)) state[note] = NOTES[note]
