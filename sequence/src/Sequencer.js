@@ -2,9 +2,59 @@ import React, { Component } from 'react'
 import cx from 'classnames'
 import Synth from './Synth'
 import WebMidi from './midi.js';
-
 import NOTES from './notes'
+import { getKeyByValue } from './helpers.js'
 
+
+
+
+// const GRID_SIZE = 8
+// const CIRCLE_PAD_POSITIONS = 'ABCDEFGH12345678'
+// // const TOP_CIRCLE_BUTTON_VALUE = 176
+// const NOT_TOP_CIRCLE_BUTTON_VALUE = 144
+// const PRESSED_DOWN_VALUE = 127
+
+// const COLORS = {
+//   red: 3,
+//   green: 48,
+//   orange: 18,
+//   yellow: 49,
+//   blank: 0
+// }
+
+const bottomRow = {
+  11: '1',
+  12: '2',
+  13: '3',
+  14: '4',
+  15: '5',
+  16: '6',
+  17: '7',
+  18: '8'
+}
+
+const leftCol = {
+  11: 'A',
+  21: 'B',
+  31: 'C',
+  41: 'D',
+  51: 'E',
+  61: 'F',
+  71: 'G',
+  81: 'H'
+}
+
+const launchGrid =[
+  [81, 82, 83, 84, 85, 86, 87, 88],
+  [71, 72, 73, 74, 75, 76, 77, 78],
+  [61, 62, 63, 64, 65, 66, 67, 68],
+  [51, 52, 53, 54, 55, 56, 57, 58],
+  [41, 42, 43, 44, 45, 46, 47, 48],
+  [31, 32, 33, 34, 35, 36, 37, 38],
+  [21, 22, 23, 24, 25, 26, 27, 28],
+  [11, 12, 13, 14, 15, 16, 17, 18]
+]
+ 
 if (navigator.requestMIDIAccess) {
   console.log('This browser supports WebMIDI!');
 } else {
@@ -29,6 +79,9 @@ function getMIDIMessage(midiMessage) {
   console.log(x, y);
 } 
 
+
+
+
 const getNotesForOctave = octave =>
   Object.keys(NOTES).reduce((state, note) => {
     if (note.split('').pop() === String(octave)) state[note] = NOTES[note]
@@ -49,7 +102,7 @@ const defaultPads = [
 class Sequencer extends Component {
   state = {
     type: 'sine',
-    pads: defaultPads,
+    pads: defaultPads, launchGrid,
     bpm: 150,
     release: 100,
     step: 0,
