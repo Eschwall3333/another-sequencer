@@ -14,7 +14,7 @@ export default class Synth {
       delay.delayTime.value = state.delay ? state.bpm / 2000 : 0
   
       const vca = this.ctx.createGain()
-      vca.gain.value = 0.5
+      vca.gain.value = 0.3
   
       // Connections
       osc.connect(vca)

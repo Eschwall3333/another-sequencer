@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import cx from 'classnames'
 import Synth from './Synth'
-import WebMidi from './midi.js';
+import WebMIDI from './midi.js';
 import NOTES from './notes'
 import { getKeyByValue } from './helpers.js'
+import { tsConstructorType } from '@babel/types';
 
 
 
@@ -21,6 +22,79 @@ import { getKeyByValue } from './helpers.js'
 //   yellow: 49,
 //   blank: 0
 // }
+
+
+let midiHook = null
+
+if (navigator.requestMIDIAccess) {
+  console.log('This browser supports WebMIDI!');
+} else {
+  console.log('WebMIDI is not supported in this browser.');
+}  
+navigator.requestMIDIAccess()
+  .then(onMIDISuccess, console.log);
+
+function onMIDISuccess(midiAccess) {
+  for (var input of midiAccess.inputs.values())
+    input.onmidimessage = getMIDIMessage;
+}
+function getMIDIMessage(midiMessage) {
+    console.log(midiMessage);
+    const number = midiMessage.data[1]
+    console.log(number);
+    const x = number % 10 -1;
+    const y = Math.floor(number / 10) - 1 
+    const gridPosition = { x, y }
+    console.log(x, y);
+
+    if (midiMessage.data[2] === 127)
+    midiHook && midiHook(x,y);
+    // const cc = [];
+    // const arr = cc.push(midiMessage.data[2]);
+    // // const index = arr[1]
+    // console.log(cc);
+    } 
+    // function mapMidiDataToMessage (midiData) {
+    //   const number = midiData[1]
+    //   const isPressedDown = midiData[2] === PRESSED_DOWN_VALUE
+    //   const value = isPressedDown ? 'down' : 'up'
+    
+    //   const hasTopCircleButtonBeenPressed = midiData[0] === TOP_CIRCLE_BUTTON_VALUE
+    
+    //   if (hasTopCircleButtonBeenPressed) {
+    //     return {
+    //       circle: true,
+    //       position: topCircleButtons[number],
+    //       value
+    //     }
+    //   }
+    
+    //   if (rightCircleButtons.hasOwnProperty(number)) {
+    //     return {
+    //       circle: true,
+    //       position: rightCircleButtons[number],
+    //       value
+    //     }
+    //   }
+    
+    //   return {
+    //     grid: true,
+    //     position: mapNumberToGridPosition(number),
+    //     value
+    //   }
+    // }
+    
+    // let inputs = midiMessage.data[1];
+    // let grid = Array(128).fill(0.5)
+
+    // getMIDIMessage = function(midiMessage) {
+    //   var arr = midiMessage.data
+    //   var index = arr[1]
+    //   console.log(arr[1]);
+    // }
+  // const cmd = midiMessage.data[1];
+
+
 
 const bottomRow = {
   11: '1',
@@ -54,30 +128,19 @@ const launchGrid =[
   [21, 22, 23, 24, 25, 26, 27, 28],
   [11, 12, 13, 14, 15, 16, 17, 18]
 ]
+console.log(launchGrid);
+// const launchGrid = [
+//   [11, 21, 31, 41, 51, 61, 71, 81],
+//   [12, 22, 32, 42, 52, 62, 72, 82],
+//   [13, 23, 33, 43, 53, 63, 73, 83],
+//   [14, 24, 34, 44, 54, 64, 74, 84],
+//   [15, 25, 35, 45, 55, 65, 75, 85],
+//   [16, 26, 36, 46, 56, 66, 76, 86],
+//   [17, 27, 37, 47, 57, 67, 77, 87],
+//   [18, 28, 38, 48, 58, 68, 78, 88]
+// ]
  
-if (navigator.requestMIDIAccess) {
-  console.log('This browser supports WebMIDI!');
-} else {
-  console.log('WebMIDI is not supported in this browser.');
-}  
-navigator.requestMIDIAccess()
-  .then(onMIDISuccess, console.log);
 
-function onMIDISuccess(midiAccess) {
-  for (var input of midiAccess.inputs.values())
-    input.onmidimessage = getMIDIMessage;
-}
-  
-
-function getMIDIMessage(midiMessage) {
-  console.log(midiMessage);
-  const number = midiMessage.data[1]
-  console.log(number);
-  const x = number % 8
-  const y = Math.floor(number / 8) / 2
-  const gridPosition = { x, y }
-  console.log(x, y);
-} 
 
 
 
@@ -112,6 +175,22 @@ class Sequencer extends Component {
     delay: false,
     notes: getNotesForOctave(4)
   }
+
+  componentDidMount(){
+
+    midiHook = (x,y)=>{
+      this.togglePad(x,y);
+      // console.log('mounted');
+    }
+    
+  }
+  
+  componentWillUnmount(){
+    midiHook = null
+
+
+  }
+
 
   changeRelease(release) {
     this.setState(
@@ -208,12 +287,36 @@ class Sequencer extends Component {
     clearInterval(this.interval)
   }
 
-  togglePad(group, pad) {
-    this.setState(state => {
-      const clonedPads = state.pads.slice(0)
-      const padState = clonedPads[group][pad]
+  // convertPad(row, fromBottom) {
+  //   const incoming = row + fromBottom + "";
 
+  //   switch (incoming) {
+  //     case '00':
+  //       return [7,0];
+  //     case '01':
+  //       return [7,1];
+  //     default:
+  //       break;
+  //   }
+
+  // }
+
+  togglePad(group, pad, group2) {
+    this.setState(state => {
+      
+    // const cc = [];
+    // const arr = cc.push(MIDIMessageEvent.data[1]);
+    // // const index = arr[1]
+    // console.log(cc);
+      const clonedPads = state.pads.slice(0)
+      // const launchPad = state.pads.launchGrid.slice(0)
+      const padState = clonedPads[group][pad]
+      // const gridish = this.convertPad(group, pad);
+
+      // defaultPads[gridish[0], gridish[1]];
       clonedPads[group] = [0, 0, 0, 0, 0, 0, 0, 0]
+      //  launchGrid [group2] = [cc]
+      // console.log(launchPad);
       clonedPads[group][pad] = padState === 1 ? 0 : 1
       return {
         pads: clonedPads
@@ -340,7 +443,8 @@ class Sequencer extends Component {
                         on: pad === 1
                       })}
                       onClick={() => {
-                        this.togglePad(groupIndex, i)
+                        // debugger;
+                        this.togglePad(groupIndex, i);
                       }}
                     />
                   ))}
