@@ -15,15 +15,12 @@ import { tsConstructorType } from '@babel/types';
 // const NOT_TOP_CIRCLE_BUTTON_VALUE = 144
 // const PRESSED_DOWN_VALUE = 127
 
-// const COLORS = {
-//   red: 3,
-//   green: 48,
-//   orange: 18,
-//   yellow: 49,
-//   blank: 0
-// }
+const COLORS = {
+  blue: 49,
+  blank: 0
+}
 
-
+let midi = onMIDISuccess;
 let midiHook = null
 
 if (navigator.requestMIDIAccess) {
@@ -32,12 +29,28 @@ if (navigator.requestMIDIAccess) {
   console.log('WebMIDI is not supported in this browser.');
 }  
 navigator.requestMIDIAccess()
-  .then(onMIDISuccess, console.log);
+  .then(midi, console.log);
 
 function onMIDISuccess(midiAccess) {
+  // var outputs = midiAccess.outputs;
+  console.log(midiAccess.outputs.values());
   for (var input of midiAccess.inputs.values())
     input.onmidimessage = getMIDIMessage;
 }
+function midiOut(midiAccess) {
+  for (var output of midiAccess.outputs.value())
+  output.onmidimessage = getMIDIMessage;
+  // console.log(midiAccess)
+}
+// function onMIDISuccess2(midiAccess) {
+//   for (var output of midiAccess.outputs.values())
+//     output.onmidimessage = getMIDIMessage;
+//     console.log(output.values);
+    
+// }
+
+
+
 function getMIDIMessage(midiMessage) {
     console.log(midiMessage);
     const number = midiMessage.data[1]
@@ -54,6 +67,25 @@ function getMIDIMessage(midiMessage) {
     // // const index = arr[1]
     // console.log(cc);
     } 
+
+    // function mapMessageToData(message) {
+    //   const color = COLORS[message.value]
+      
+      
+    //   if (typeof color === 'undefined') {
+    //     return console.error(message.value, 'is not a valid colour')
+    //   }
+      
+    //   const isGridPosition = message.gridPosition
+    //     if (isGridPosition) {
+    //       return [
+    //         gridPosition,
+    //         mapGridPositionToNumber(message.position),
+    //         color
+    //       ]
+    //     }
+      
+    //   }
     // function mapMidiDataToMessage (midiData) {
     //   const number = midiData[1]
     //   const isPressedDown = midiData[2] === PRESSED_DOWN_VALUE

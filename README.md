@@ -1,68 +1,25 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+    STEP ROUGE
 
-## Available Scripts
+Are you a starving artist who just bought a cool new midi controller but doesn't wan to screw around with getting it all setup in your DAW??  Don't you wish there was some sort of website you could go to to allow you to play with your new midi controller and maybe hash out some weird musical ideas at the same time?.......have no fear my friend/friends......I GOT YOU COVERED
 
-In the project directory, you can run:
+Welcome to Step Rouge.
+ 
+Step Rouge is a simple web based rhythm sequencer that I built using ReactJS, the Web Audio api, and the Web Midi api.  
 
-### `npm start`
+To get started, simply select one ofthe 8 boxes in each of the columns.  Each row of boxes corresponds to a musical note which is displayed on the left of the page.  Note that only one note can be played per column.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+All you have to do now is press The PLAY button!
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+Feel free to tweak the bpm using the up and down arrows (or just type it in), change the wave of the synth (altering the sound), increase or decrease the octave, adjust the release of the notes(altering the amount of time the note plays for) and last but not least toggle the DELAY button for some spacey effects.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+Step Rouge also supports midi control (currently the only supported controller is the Novation launchpad and Launchpad Pro).
+To utilize this function, download the "Jazz-Midi" chrome extension and install. Allow the extension to run on all sites
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+[-right click the Jazz-midi extension icon
+    -hover over the listed option that says "This can read and change site data"
+    -check the box in the hover menu that says "on all sites"]
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Not using the deployed link?? No problem, just clone the repository, run npm start and you should be golden.  You still need the Jazz-Midi extension though if you plan on using midi.
