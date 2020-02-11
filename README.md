@@ -2,9 +2,8 @@
 
 Are you a starving artist who just bought a cool new midi controller but doesn't want to screw around with getting it all setup in your DAW??  Don't you wish there was some sort of website you could go to to allow you to play with your new midi controller and maybe hash out some weird musical ideas at the same time?.......have no fear my friend/friends......I'VE GOT YOU COVERED
 
-Welcome to Step Rouge.
  
-Step Rouge is a simple web based rhythm sequencer that I built using ReactJS, the Web Audio api, and the Web Midi api.  
+Welcome to Step Rouge, a simple web based rhythm sequencer that I built using ReactJS, the Web Audio api, and the Web Midi api.  
 
 To get started, simply select one of the 8 boxes in each of the columns.  Each row of boxes corresponds to a musical note which is displayed on the left of the page.  Note that only one note can be played per column.
 
