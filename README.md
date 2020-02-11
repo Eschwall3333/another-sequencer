@@ -1,6 +1,6 @@
     STEP ROUGE
 
-Are you a starving artist who just bought a cool new midi controller but doesn't wan to screw around with getting it all setup in your DAW??  Don't you wish there was some sort of website you could go to to allow you to play with your new midi controller and maybe hash out some weird musical ideas at the same time?.......have no fear my friend/friends......I GOT YOU COVERED
+Are you a starving artist who just bought a cool new midi controller but doesn't want to screw around with getting it all setup in your DAW??  Don't you wish there was some sort of website you could go to to allow you to play with your new midi controller and maybe hash out some weird musical ideas at the same time?.......have no fear my friend/friends......I'VE GOT YOU COVERED
 
 Welcome to Step Rouge.
  
