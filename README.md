@@ -6,7 +6,7 @@ Welcome to Step Rouge.
  
 Step Rouge is a simple web based rhythm sequencer that I built using ReactJS, the Web Audio api, and the Web Midi api.  
 
-To get started, simply select one ofthe 8 boxes in each of the columns.  Each row of boxes corresponds to a musical note which is displayed on the left of the page.  Note that only one note can be played per column.
+To get started, simply select one of the 8 boxes in each of the columns.  Each row of boxes corresponds to a musical note which is displayed on the left of the page.  Note that only one note can be played per column.
 
 All you have to do now is press The PLAY button!
 
