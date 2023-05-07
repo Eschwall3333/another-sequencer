@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "classnames": "^2.2.6",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "jzz": "^0.9.6",
     "node-sass": "^4.13.0",
     "react": "^16.11.0",
